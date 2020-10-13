@@ -107,7 +107,7 @@ open class OAuth2Swift: OAuthSwift {
                         completion(.failure(.missingState))
                         return
                     }
-                    if responseState != state {
+					if responseState.removingPercentEncoding != state {
                         OAuthSwift.log?.error("Resource url: Unmatched 'state' parameter")
                         completion(.failure(.stateNotEqual(state: state, responseState: responseState)))
                         return
